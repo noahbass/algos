@@ -3,8 +3,8 @@
 # 
 import math
 
-# g: a connected graph with vertex set V and edge set E
-# w: a weight function on E for the graph g
+# g: a connected graph with vertex set V
+# w: an edge set E with weights
 # r: vertex to start the spanning tree
 # returns: a minimum spanning tree as a parent array
 def prims(g, w, r):
@@ -31,7 +31,6 @@ def prims(g, w, r):
                     nearest[v] = w[(u, v)]
                     parent[v] = u
                     # print(g[u], ': ', v)
-        # print(nearest, visited)
 
     return parent
 
@@ -103,3 +102,48 @@ if __name__ == "__main__":
     parent_array2 = prims(graph2, weights2, 1)
     assert parent_array2 == [1, -1, 0, 4, 5, 2]
     print(parent_array2)
+
+    # adjacency list representation of the graph
+    graph3 = {
+        0: [1, 5, 7],
+        1: [7, 0, 5, 2],
+        2: [1, 5, 4, 3],
+        3: [2, 4],
+        4: [5, 2, 3],
+        5: [4, 2, 6, 1, 0],
+        6: [5, 7],
+        7: [0, 1, 6]
+    }
+    # weights each edge of the graph
+    weights3 = {
+        (0, 1): 4,
+        (1, 0): 4,
+        (0, 5): 2,
+        (5, 0): 2,
+        (0, 7): 3,
+        (7, 0): 3,
+        (1, 7): 9,
+        (7, 1): 9,
+        (1, 5): 3,
+        (5, 1): 3,
+        (1, 2): 7,
+        (2, 1): 7,
+        (2, 5): 8,
+        (5, 2): 8,
+        (2, 4): 3,
+        (4, 2): 3,
+        (2, 3): 5,
+        (3, 2): 5,
+        (3, 4): 2,
+        (4, 3): 2,
+        (4, 5): 6,
+        (5, 4): 6,
+        (5, 6): 2,
+        (6, 5): 2,
+        (6, 7): 8,
+        (7, 6): 8,
+    }
+
+    parent_array3 = prims(graph3, weights3, 1)
+    assert parent_array3 == [5, -1, 4, 4, 5, 1, 5, 0]
+    print(parent_array3)
