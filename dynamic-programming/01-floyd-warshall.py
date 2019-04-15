@@ -9,9 +9,6 @@
 # infinity for a vertex that doesn't connect) and returns as output with the shortest
 # paths and another matrix with the weight of the shortest paths from all vertices to
 # all other vertices in the graph.
-#
-# This algorithm runs in worst-case time θ(|V|^2). An alternative algorithm that
-# runs in worst-case time θ(|E| + |V| log |V|) is shown in `05-dijkstras-priority-queue.py`.
 
 import math
 
@@ -73,6 +70,8 @@ if __name__ == "__main__":
 
     # get the shortest path matrix and distances matrix
     shortest_paths2, distances2 = floyds(graph2)
+    assert shortest_paths2 == [[0, 7, 7, 11, 7, 1, 5], [7, 0, 1, 6, 2, 6, 2], [7, 1, 0, 5, 1, 6, 2], [11, 6, 5, 0, 4, 10, 7], [7, 2, 1, 4, 0, 6, 3], [1, 6, 6, 10, 6, 0, 4], [5, 2, 2, 7, 3, 4, 0]]
+    assert distances2 == [[-1, 6, 6, 5, 5, -1, 5], [6, -1, -1, 4, 2, 6, -1], [6, -1, -1, 4, -1, 6, -1], [5, 4, 4, -1, -1, 4, 4], [5, 2, -1, -1, -1, -1, 2], [-1, 6, 6, 4, -1, -1, -1], [5, -1, -1, 4, 2, -1, -1]]
 
     # matrix representation of the digraph
     graph3 = [
@@ -86,3 +85,5 @@ if __name__ == "__main__":
 
     # get the shortest path matrix and distances matrix
     shortest_paths3, distances3 = floyds(graph3)
+    assert shortest_paths3 == [[0, 2, -2, 1, -1, 0], [3, 0, 1, 4, 2, 3], [6, 4, 0, 3, 1, 2], [5, 3, -1, 0, 0, 1], [5, 5, 1, 2, 0, 1], [4, 6, 2, 5, 3, 0]]
+    assert distances3 == [[-1, 2, -1, 4, 2, 4], [-1, -1, 0, 4, 2, 4], [5, -1, -1, 4, -1, 4], [5, 2, -1, -1, 2, 4], [5, 3, 3, -1, -1, -1], [-1, 2, 0, 4, 2, -1]]
